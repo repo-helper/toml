@@ -1,5 +1,7 @@
 from toml.tz import TomlTz as TomlTz
-from typing import Any, IO, MutableMapping, Optional, Type, Union
+from typing import Any, IO, MutableMapping, Optional, Type, TypeVar, Union
+
+_M = TypeVar("_M", bound=MutableMapping[str, Any])
 
 unicode = str
 basestring = str
@@ -26,15 +28,15 @@ class CommentValue:
 
 def load(
         f: Union[str, list, IO[str]],
-        _dict: Type[MutableMapping[str, Any]] = ...,
+        _dict: Type[_M] = ...,
         decoder: Optional[TomlDecoder] = ...,
-        ) -> MutableMapping[str, Any]: ...
+        ) -> _M: ...
 
 def loads(
         s: str,
-        _dict: Type[MutableMapping[str, Any]] = ...,
+        _dict: Type[_M] = ...,
         decoder: Optional[TomlDecoder] = ...,
-        ) -> MutableMapping[str, Any]: ...
+        ) -> _M: ...
 
 class InlineTableDict: ...
 
